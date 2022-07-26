@@ -22,6 +22,7 @@ import {
 } from './geom';
 import styleGenerator from './styles';
 import TooltipChildrenContext from './tooltip-children.context';
+import selfDestruct from './state';
 
 export { TooltipChildrenContext };
 
