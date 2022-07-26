@@ -446,6 +446,14 @@ class Tooltip extends Component {
     );
   };
 
+  onShowModal = () => {
+    alert('onShowModal');
+  };
+
+  onHideModal = () => {
+    alert('onHideModal');
+  };
+
   render() {
     const {
       children,
@@ -466,6 +474,8 @@ class Tooltip extends Component {
             visible={showTooltip}
             onRequestClose={this.props.onClose}
             supportedOrientations={this.props.supportedOrientations}
+            onShow={this.onShowModal}
+            onHide={this.onHideModal}
           >
             {this.renderContentForTooltip()}
           </ModalComponent>
