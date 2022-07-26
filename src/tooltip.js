@@ -474,6 +474,7 @@ class Tooltip extends Component {
             visible={showTooltip}
             onRequestClose={this.props.onClose}
             supportedOrientations={this.props.supportedOrientations}
+            key={"TooltipModalComponent"}
             onShow={this.onShowModal}
             onHide={this.onHideModal}
           >
