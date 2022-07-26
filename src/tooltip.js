@@ -153,6 +153,12 @@ class Tooltip extends Component {
     const contentChanged = !rfcIsEqual(prevProps.content, content);
     const placementChanged = prevProps.placement !== placement;
     const becameVisible = isVisible && !prevProps.isVisible;
+
+    if (becameVisible && isDisplayingTooltip) {
+      // SELF DESTRUCT! DO NOT SHOW MULTIPLE TOOLTIPS
+      selfDestruct = true;
+    }
+
     const insetsChanged = !rfcIsEqual(prevState.displayInsets, displayInsets);
 
     if (contentChanged || placementChanged || becameVisible || insetsChanged) {
@@ -447,11 +453,13 @@ class Tooltip extends Component {
   };
 
   onShowModal = () => {
-    alert('onShowModal');
+    // alert('onShowModal');
+    isDisplayingTooltip = true;
   };
 
   onHideModal = () => {
-    alert('onHideModal');
+    // alert('onHideModal');
+    isDisplayingTooltip = false;
   };
 
   render() {
@@ -466,6 +474,10 @@ class Tooltip extends Component {
     const showTooltip = isVisible && !this.state.waitingForInteractions;
     const ModalComponent = modalComponent || Modal;
 
+    if (selfDestruct) {
+      return null;
+    }
+
     return (
       <React.Fragment>
         {useReactNativeModal ? (
@@ -474,7 +486,6 @@ class Tooltip extends Component {
             visible={showTooltip}
             onRequestClose={this.props.onClose}
             supportedOrientations={this.props.supportedOrientations}
-            key={"TooltipModalComponent"}
             onShow={this.onShowModal}
             onHide={this.onHideModal}
           >
