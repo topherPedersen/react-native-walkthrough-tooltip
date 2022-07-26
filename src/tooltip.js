@@ -23,7 +23,9 @@ import {
 import styleGenerator from './styles';
 import TooltipChildrenContext from './tooltip-children.context';
 import selfDestruct from './state';
+import setSelfDestruct from './state';
 import isDisplayingTooltip from './state';
+import setIsDisplayingTooltip from './state';
 
 export { TooltipChildrenContext };
 
@@ -158,7 +160,7 @@ class Tooltip extends Component {
 
     if (becameVisible && isDisplayingTooltip) {
       // SELF DESTRUCT! DO NOT SHOW MULTIPLE TOOLTIPS
-      selfDestruct = true;
+      setSelfDestruct(true);
     }
 
     const insetsChanged = !rfcIsEqual(prevState.displayInsets, displayInsets);
@@ -455,13 +457,11 @@ class Tooltip extends Component {
   };
 
   onShowModal = () => {
-    // alert('onShowModal');
-    isDisplayingTooltip = true;
+    setIsDisplayingTooltip(true);
   };
 
   onHideModal = () => {
-    // alert('onHideModal');
-    isDisplayingTooltip = false;
+    setIsDisplayingTooltip(false);
   };
 
   render() {
