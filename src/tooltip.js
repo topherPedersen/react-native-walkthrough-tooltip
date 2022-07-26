@@ -23,6 +23,7 @@ import {
 import styleGenerator from './styles';
 import TooltipChildrenContext from './tooltip-children.context';
 import selfDestruct from './state';
+import isDisplayingTooltip from './state';
 
 export { TooltipChildrenContext };
 
